@@ -33,21 +33,21 @@ export const PROJECTS: Project[] = [
     description: "A decentralized voting application (DApp) proof-of-concept using Node.js and smart contracts, leveraging Aadhar for identity and MetaMask for blockchain interaction.",
     tags: ["Node.js", "JavaScript", "MetaMask", "Blockchain"],
     imageUrl: "https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=800&auto=format&fit=crop",
-    github: "https://github.com/Sushantspatil"
+    github: "https://github.com/Sushantspatil/major_project_voting"
   },
   {
     title: "Simon Says Game",
     description: "Interactive web-based game engineering core JavaScript logic for sequence generation, state management and event-driven DOM manipulation.",
     tags: ["Javascript", "CSS", "HTML"],
     imageUrl: "https://images.unsplash.com/photo-1611996575749-79a3a250f948?q=80&w=800&auto=format&fit=crop",
-    link: "https://sushantspatil.github.io/Simon-Says-Game/"
+    link: "https://sushantspatil.github.io/Simon_game/"
   },
   {
     title: "Class Cad (Android App)",
     description: "Android application developed to display college timetables, results, and notices, reducing paperwork and improving communication efficiency.",
     tags: ["Java", "Firebase", "Android Studio"],
     imageUrl: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=800&auto=format&fit=crop",
-    github: "https://github.com/Sushantspatil"
+    github: "https://github.com/Sushantspatil/ClassCad"
   }
 ];
 

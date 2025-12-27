@@ -9,6 +9,12 @@ import Certifications from './components/Certifications';
 import AiAssistant from './components/AiAssistant';
 import Footer from './components/Footer';
 import { EDUCATION } from './constants';
+// @ts-ignore
+import SushantImage from './images/Sushant.jpeg';
+
+// Then use it in your component or code:
+
+
 
 const App: React.FC = () => {
   return (
@@ -23,7 +29,7 @@ const App: React.FC = () => {
             <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
               <div className="relative group">
                 <div className="absolute inset-0 bg-blue-600 rounded-[2rem] rotate-3 group-hover:rotate-6 transition-transform duration-500" />
-                <img src="/images/Sushant.jpeg" alt="Sushant Patil"
+               // <img src={SushantImage} alt="Sushant" 
                   className="relative rounded-[2rem] w-full aspect-square object-cover border border-white/10 grayscale hover:grayscale-0 transition-all duration-500"
                 />
               </div>
