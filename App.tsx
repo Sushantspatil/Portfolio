@@ -20,7 +20,6 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-950 text-gray-100 selection:bg-blue-500/30">
       <Navbar />
-
       <main>
         <Suspense fallback={<div className="h-screen flex items-center justify-center">Loading portfolio...</div>}>
           <Hero />
