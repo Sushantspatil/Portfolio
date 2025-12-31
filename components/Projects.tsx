@@ -11,7 +11,7 @@ const Projects: React.FC = () => {
             <h2 className="text-4xl font-bold mb-4">Featured Work</h2>
             <p className="text-gray-400">A selection of my recent developments</p>
           </div>
-          <a href="#" className="text-blue-500 font-semibold hover:underline">View All Projects &rarr;</a>
+          <a href="https://github.com/Sushantspatil?tab=repositories" className="text-blue-500 font-semibold hover:underline">View All Projects &rarr;</a>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
