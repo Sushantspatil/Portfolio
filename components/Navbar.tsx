@@ -56,7 +56,7 @@ const Navbar: React.FC = () => {
               </a>
             ))}
             <a 
-              href="#contact" 
+              href="#ai-assistant" 
               className="px-6 py-2.5 bg-blue-600 text-white text-sm font-bold rounded-full hover:bg-blue-700 transition-all shadow-lg shadow-blue-900/20 active:scale-95"
             >
               Ask AI
@@ -106,7 +106,7 @@ const Navbar: React.FC = () => {
             isMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
           }`}>
             <a 
-              href="#contact" 
+              href="#ai-assistant" 
               className="flex items-center justify-center py-5 bg-blue-600 text-white text-lg font-black rounded-2xl w-full shadow-2xl shadow-blue-900/40 active:scale-95 transition-transform"
               onClick={() => setIsMenuOpen(false)}
             >
