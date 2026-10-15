@@ -86,4 +86,4 @@ export const EDUCATION = [
   }
 ];
 
-export const RESUME_LINK = "https://sushantspatil.github.io/Resume/Resume.pdf";
+export const RESUME_LINK = "https://sushantspatil.github.io/Resume/resume_2026_final.pdf";
