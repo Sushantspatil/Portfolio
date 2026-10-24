@@ -3,18 +3,18 @@ import { CERTIFICATIONS } from '../constants';
 
 const Certifications: React.FC = () => {
   return (
-    <section id="certifications" className="py-20 bg-[#111827]/40 border-t border-slate-800/60 relative">
+    <section id="certifications" className="scroll-mt-24 py-20 bg-slate-100/60 dark:bg-[#111827]/40 border-t border-slate-200 dark:border-slate-800/60 relative transition-colors">
       <div className="max-w-7xl mx-auto px-6">
         
         {/* Section Header */}
         <div className="flex items-center gap-4 mb-12">
           <div className="w-8 h-px bg-blue-500" />
-          <span className="text-xs font-mono uppercase tracking-widest text-blue-400 font-semibold">Verified Credentials</span>
-          <div className="h-px flex-1 bg-gradient-to-r from-slate-800 to-transparent" />
+          <span className="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-blue-400 font-semibold">Verified Credentials</span>
+          <div className="h-px flex-1 bg-gradient-to-r from-slate-300 dark:from-slate-800 to-transparent" />
         </div>
 
         <div className="text-left mb-8">
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#F8FAFC] tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-[#F8FAFC] tracking-tight">
             Certifications
           </h2>
         </div>
@@ -23,16 +23,16 @@ const Certifications: React.FC = () => {
           {CERTIFICATIONS.map((cert, index) => (
             <div 
               key={index} 
-              className="p-6 rounded-2xl bg-[#172033]/60 border border-slate-800/80 hover:border-blue-500/30 transition-all flex flex-col justify-between group"
+              className="p-6 rounded-2xl bg-white dark:bg-[#172033]/60 border border-slate-200 dark:border-slate-800/80 hover:border-blue-500/30 transition-all flex flex-col justify-between group shadow-sm"
             >
               <div>
-                <div className="w-10 h-10 rounded-xl bg-blue-600/10 border border-blue-500/20 flex items-center justify-center text-blue-400 mb-4 group-hover:bg-blue-600 group-hover:text-white transition-all">
+                <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-600/10 border border-blue-200 dark:border-blue-500/20 flex items-center justify-center text-blue-600 dark:text-blue-400 mb-4 group-hover:bg-blue-600 group-hover:text-white transition-all">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                   </svg>
                 </div>
-                <h3 className="text-base font-bold text-slate-100 mb-1">{cert.name}</h3>
-                <p className="text-xs text-slate-400 mb-4 font-mono">{cert.issuer}</p>
+                <h3 className="text-base font-bold text-slate-900 dark:text-slate-100 mb-1">{cert.name}</h3>
+                <p className="text-xs text-slate-500 dark:text-slate-400 mb-4 font-mono">{cert.issuer}</p>
               </div>
               
               {cert.link && (
@@ -40,7 +40,7 @@ const Certifications: React.FC = () => {
                   href={cert.link} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-400 hover:text-blue-300 transition-colors pt-3 border-t border-slate-800"
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors pt-3 border-t border-slate-100 dark:border-slate-800"
                 >
                   <span>View Verified Certificate</span>
                   <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">

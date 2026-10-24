@@ -18,6 +18,8 @@ export interface MetricHighlight {
   label: string;
   description: string;
   tag?: string;
+  status?: string;
+  skills?: string[];
 }
 
 export interface Experience {

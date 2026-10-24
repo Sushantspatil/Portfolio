@@ -59,31 +59,41 @@ export const HIGHLIGHTS: MetricHighlight[] = [
     metric: "3+ Years",
     label: "Professional Experience",
     description: "Hands-on software development experience across the entire MERN stack, delivering production features for enterprise and SaaS platforms.",
-    tag: "Overall"
+    tag: "Overall",
+    status: "MERN Stack Specialist",
+    skills: ["React.js", "Node.js", "Express.js", "PostgreSQL", "MongoDB"]
   },
   {
     metric: "40+",
     label: "Production REST APIs",
     description: "Endpoints engineered at Solverix Technologies for authentication, reporting, authorization, validation, and database transactions.",
-    tag: "Solverix"
+    tag: "Solverix",
+    status: "Factory Automation System",
+    skills: ["REST Architecture", "Prisma ORM", "PostgreSQL", "JWT & RBAC", "Validation"]
   },
   {
     metric: "20+",
     label: "React Dashboards & Screens",
     description: "Engineered at Oxstren Wearable Technologies using modular, reusable components with dynamic API-driven functionality.",
-    tag: "Oxstren"
+    tag: "Oxstren",
+    status: "Production UI Components",
+    skills: ["React.js", "Redux Toolkit", "Dynamic APIs", "Modular Architecture"]
   },
   {
     metric: "6+",
     label: "Full-Stack Projects",
     description: "Client and internal web applications contributed to at Oxstren spanning React, Node, Express, MongoDB, and PostgreSQL.",
-    tag: "Oxstren"
+    tag: "Oxstren",
+    status: "End-to-End Delivery",
+    skills: ["Full Stack", "MongoDB", "Node.js", "Express.js", "PostgreSQL"]
   },
   {
     metric: "30%",
     label: "Load-Time Reduction",
     description: "Page load speed improvement achieved at Innovins Technologies through frontend asset optimization and code efficiency.",
-    tag: "Innovins"
+    tag: "Innovins",
+    status: "Performance Optimization ⚡",
+    skills: ["Core Web Vitals", "Asset Optimization", "Code Splitting", "Speedup"]
   }
 ];
 
