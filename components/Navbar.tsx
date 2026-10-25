@@ -21,6 +21,18 @@ const Navbar: React.FC = () => {
   const rafId = useRef<number | null>(null);
   const { theme, toggleTheme } = useTheme();
 
+  const isClickNavigating = useRef(false);
+  const clickTimer = useRef<NodeJS.Timeout | null>(null);
+
+  const handleNavClick = (id: string) => {
+    setActiveSection(id);
+    isClickNavigating.current = true;
+    if (clickTimer.current) clearTimeout(clickTimer.current);
+    clickTimer.current = setTimeout(() => {
+      isClickNavigating.current = false;
+    }, 850);
+  };
+
   // Scroll detection, active section tracking, and ultra-smooth reading progress
   useEffect(() => {
     const handleScroll = () => {
@@ -35,7 +47,25 @@ const Navbar: React.FC = () => {
         targetProgress.current = 0;
       }
 
-      // Track active section using accurate viewport bounding rects
+      // If user recently clicked a nav link, let smooth scroll land without intermediate tab flickering
+      if (isClickNavigating.current) {
+        return;
+      }
+
+      // 1. If at top of page
+      if (scrollY < 80) {
+        setActiveSection('hero');
+        return;
+      }
+
+      // 2. If at or very close to page bottom, activate contact
+      if (window.innerHeight + scrollY >= document.documentElement.scrollHeight - 60) {
+        setActiveSection('contact');
+        return;
+      }
+
+      // 3. Dominant visible height algorithm:
+      // Evaluates the exact pixel area of each section currently visible in the viewport
       const trackedSections = [
         { id: 'hero', navId: 'hero' },
         { id: 'about', navId: 'about' },
@@ -44,30 +74,36 @@ const Navbar: React.FC = () => {
         { id: 'projects', navId: 'projects' },
         { id: 'skills', navId: 'skills' },
         { id: 'education', navId: 'education' },
+        { id: 'certifications', navId: 'education' },
+        { id: 'ai-assistant', navId: 'contact' },
         { id: 'contact', navId: 'contact' },
       ];
 
-      // If at or very close to page bottom, activate contact
-      if (window.innerHeight + scrollY >= document.documentElement.scrollHeight - 60) {
-        setActiveSection('contact');
-        return;
-      }
-
-      // Check sections: the most advanced visible section at or above the threshold is active
-      const threshold = 180;
-      let matchedSection = 'hero';
+      const vpHeight = window.innerHeight;
+      let maxVisibleHeight = 0;
+      let matchedNav = 'hero';
 
       for (const sec of trackedSections) {
         const el = document.getElementById(sec.id);
         if (el) {
           const rect = el.getBoundingClientRect();
-          if (rect.top <= threshold) {
-            matchedSection = sec.navId;
+          const visibleTop = Math.max(0, rect.top);
+          const visibleBottom = Math.min(vpHeight, rect.bottom);
+          const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+
+          if (visibleHeight > maxVisibleHeight) {
+            maxVisibleHeight = visibleHeight;
+            matchedNav = sec.navId;
           }
         }
       }
 
-      setActiveSection(matchedSection);
+      setActiveSection(matchedNav);
+    };
+
+    const onManualScroll = () => {
+      isClickNavigating.current = false;
+      if (clickTimer.current) clearTimeout(clickTimer.current);
     };
 
     // Smooth linear interpolation loop (60fps/120fps fluid glide without stepwise notches)
@@ -88,12 +124,17 @@ const Navbar: React.FC = () => {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('wheel', onManualScroll, { passive: true });
+    window.addEventListener('touchmove', onManualScroll, { passive: true });
     rafId.current = requestAnimationFrame(animate);
     handleScroll();
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('wheel', onManualScroll);
+      window.removeEventListener('touchmove', onManualScroll);
       if (rafId.current) cancelAnimationFrame(rafId.current);
+      if (clickTimer.current) clearTimeout(clickTimer.current);
     };
   }, []);
 
@@ -123,15 +164,14 @@ const Navbar: React.FC = () => {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 border-b ${
-          isScrolled
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 border-b ${isScrolled
             ? 'bg-white/90 dark:bg-[#0B0F17]/95 backdrop-blur-xl border-slate-200/90 dark:border-slate-800/80 py-3 shadow-sm dark:shadow-md dark:shadow-black/40'
             : 'bg-white/70 dark:bg-[#0B0F17]/80 backdrop-blur-md border-slate-200/50 dark:border-slate-800/40 py-3.5'
-        }`}
+          }`}
       >
         {/* Full-width container that captures all space without huge empty gutters */}
-        <div className="w-full px-5 sm:px-8 lg:px-12 flex items-center justify-between">
-          
+        <div className="w-full px-5 sm:px-8 lg:px-12 flex items-center justify-evenly">
+
           {/* Left: Brand / Monogram & Name */}
           <a
             href="#hero"
@@ -170,21 +210,19 @@ const Navbar: React.FC = () => {
                 <a
                   key={item.name}
                   href={item.href}
-                  onClick={() => setActiveSection(item.id)}
-                  className={`text-xs font-medium tracking-wide transition-colors relative py-1.5 group ${
-                    isActive
+                  onClick={() => handleNavClick(item.id)}
+                  className={`text-xs font-medium tracking-wide transition-colors relative py-1.5 group ${isActive
                       ? 'text-slate-950 dark:text-white font-semibold'
                       : 'text-slate-600 hover:text-slate-950 dark:text-slate-400 dark:hover:text-slate-100'
-                  }`}
+                    }`}
                 >
                   <span>{item.name}</span>
                   {/* Clean hairline indicator on active/hover, no surrounding box */}
                   <span
-                    className={`absolute bottom-0 left-0 right-0 h-[2px] rounded-full transition-all duration-200 ${
-                      isActive
+                    className={`absolute bottom-0 left-0 right-0 h-[2px] rounded-full transition-all duration-200 ${isActive
                         ? 'bg-blue-600 dark:bg-blue-400 opacity-100'
                         : 'bg-slate-400 dark:bg-slate-500 opacity-0 group-hover:opacity-60'
-                    }`}
+                      }`}
                   />
                 </a>
               );
@@ -238,7 +276,7 @@ const Navbar: React.FC = () => {
               title="LinkedIn"
             >
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
               </svg>
             </a>
 
@@ -313,9 +351,8 @@ const Navbar: React.FC = () => {
 
       {/* Mobile Navigation Drawer */}
       <div
-        className={`md:hidden fixed inset-0 z-40 bg-white/98 dark:bg-[#0B0F17]/98 backdrop-blur-2xl transition-all duration-300 flex flex-col justify-between pt-24 pb-8 px-6 border-b border-slate-200 dark:border-slate-800 ${
-          isMenuOpen ? 'opacity-100 pointer-events-auto translate-y-0' : 'opacity-0 pointer-events-none -translate-y-4'
-        }`}
+        className={`md:hidden fixed inset-0 z-40 bg-white/98 dark:bg-[#0B0F17]/98 backdrop-blur-2xl transition-all duration-300 flex flex-col justify-between pt-24 pb-8 px-6 border-b border-slate-200 dark:border-slate-800 ${isMenuOpen ? 'opacity-100 pointer-events-auto translate-y-0' : 'opacity-0 pointer-events-none -translate-y-4'
+          }`}
         aria-hidden={!isMenuOpen}
       >
         <div className="flex flex-col space-y-2">
@@ -331,14 +368,13 @@ const Navbar: React.FC = () => {
                 key={item.name}
                 href={item.href}
                 onClick={() => {
-                  setActiveSection(item.id);
+                  handleNavClick(item.id);
                   setIsMenuOpen(false);
                 }}
-                className={`py-3 px-2 text-base font-medium flex items-center justify-between transition-colors border-b border-slate-100 dark:border-slate-800/40 ${
-                  isActive
+                className={`py-3 px-2 text-base font-medium flex items-center justify-between transition-colors border-b border-slate-100 dark:border-slate-800/40 ${isActive
                     ? 'text-blue-600 dark:text-blue-400 font-semibold'
                     : 'text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white'
-                }`}
+                  }`}
               >
                 <span>{item.name}</span>
                 <span className="font-mono text-xs text-slate-400 dark:text-slate-500">0{index + 1}</span>
