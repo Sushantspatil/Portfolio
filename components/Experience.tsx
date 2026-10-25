@@ -8,45 +8,68 @@ const Experience: React.FC = () => {
   const handleRef = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  // Smooth progress tracking (0.0 to 1.0)
-  const targetProgress = useRef(0);
-  const currentProgress = useRef(0);
-  const isAnimating = useRef(false);
-  const rafId = useRef<number | null>(null);
-
-  const activeStepRef = useRef(0);
   const [activeStep, setActiveStep] = useState(0);
+  const activeStepRef = useRef(0);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [isDragging, setIsDragging] = useState(false);
+  const isDraggingRef = useRef(false);
 
-  // Frame tick animation loop (buttery smooth spring glide without stepwise notches)
-  const animate = useCallback(() => {
-    const diff = targetProgress.current - currentProgress.current;
+  const [trackHeight, setTrackHeight] = useState<number | null>(null);
+  const node1RatioRef = useRef(0.5);
+  const rafId = useRef<number | null>(null);
 
-    if (Math.abs(diff) > 0.001) {
-      currentProgress.current += diff * 0.22;
-    } else {
-      currentProgress.current = targetProgress.current;
-      isAnimating.current = false;
+  // Measure exact vertical distance between first milestone (Node 0) and last milestone (Node 2)
+  const measureTrack = useCallback(() => {
+    const item0 = itemRefs.current[0];
+    const item1 = itemRefs.current[1];
+    const item2 = itemRefs.current[2];
+    if (!item0 || !item2) return;
+
+    const total = item2.offsetTop - item0.offsetTop;
+    if (total > 0) {
+      setTrackHeight(total);
+      if (item1) {
+        node1RatioRef.current = (item1.offsetTop - item0.offsetTop) / total;
+      }
     }
+  }, []);
 
-    const p = currentProgress.current;
+  // Smooth, instantaneous scroll tracker - maps viewport reading line directly to timeline travel
+  const updateScrollProgress = useCallback(() => {
+    const item0 = itemRefs.current[0];
+    const item2 = itemRefs.current[2];
+    if (!item0 || !item2) return;
 
-    // Update illuminated beam height directly
+    const r0 = item0.getBoundingClientRect();
+    const r2 = item2.getBoundingClientRect();
+
+    // Centers of top milestone (Node 0) and bottom milestone (Node 2)
+    const y0 = r0.top + 28;
+    const y2 = r2.top + 28;
+    const totalDist = y2 - y0;
+    if (totalDist <= 0) return;
+
+    // Natural reading line in viewport (38% to 42% from top, comfortably clamped)
+    const focusY = Math.max(160, Math.min(window.innerHeight * 0.40, 360));
+    const scrolled = focusY - y0;
+
+    // Exact progress: 0.0 at Node 0, 1.0 at Node 2
+    const p = Math.max(0, Math.min(1, scrolled / totalDist));
+
+    // Update DOM directly for instant, zero-lag 60fps/120fps sync
     if (beamRef.current) {
       beamRef.current.style.height = `${p * 100}%`;
     }
-
-    // Update moveable indicator bead handle position directly
     if (handleRef.current) {
       handleRef.current.style.top = `${p * 100}%`;
     }
 
     // Determine illuminated milestone step based on progress thresholds
+    const threshold1 = node1RatioRef.current ? node1RatioRef.current * 0.72 : 0.36;
     let active = 0;
-    if (p >= 0.72) {
+    if (p >= 0.85) {
       active = 2;
-    } else if (p >= 0.32) {
+    } else if (p >= threshold1) {
       active = 1;
     }
 
@@ -54,47 +77,31 @@ const Experience: React.FC = () => {
       activeStepRef.current = active;
       setActiveStep(active);
     }
-
-    if (isAnimating.current) {
-      rafId.current = requestAnimationFrame(animate);
-    }
   }, []);
 
-  // Scroll handler: maps viewport scroll position to timeline travel
-  const updateScrollProgress = useCallback(() => {
-    if (!trackContainerRef.current) return;
-    const rect = trackContainerRef.current.getBoundingClientRect();
-    const trackHeight = rect.height;
-    if (trackHeight <= 0) return;
-
-    // Natural reading line: 45% from top of viewport
-    const focusY = window.innerHeight * 0.45;
-    const relativeY = focusY - rect.top;
-
-    // Clamp progress between 0.0 (top milestone) and 1.0 (bottom milestone)
-    const p = Math.max(0, Math.min(1, relativeY / trackHeight));
-    targetProgress.current = p;
-
-    if (!isAnimating.current) {
-      isAnimating.current = true;
-      rafId.current = requestAnimationFrame(animate);
-    }
-  }, [animate]);
-
   useEffect(() => {
+    measureTrack();
     updateScrollProgress();
 
-    // Trigger on initial layout settle
-    const t1 = setTimeout(updateScrollProgress, 100);
-    const t2 = setTimeout(updateScrollProgress, 500);
+    // Re-check after fonts, styles and DOM layout fully settle
+    const t1 = setTimeout(() => {
+      measureTrack();
+      updateScrollProgress();
+    }, 100);
+
+    const t2 = setTimeout(() => {
+      measureTrack();
+      updateScrollProgress();
+    }, 400);
 
     const onScroll = () => {
-      if (!isDragging) {
-        updateScrollProgress();
-      }
+      if (isDraggingRef.current) return;
+      if (rafId.current) cancelAnimationFrame(rafId.current);
+      rafId.current = requestAnimationFrame(updateScrollProgress);
     };
 
     const onResize = () => {
+      measureTrack();
       updateScrollProgress();
     };
 
@@ -108,9 +115,9 @@ const Experience: React.FC = () => {
       window.removeEventListener('resize', onResize);
       if (rafId.current) cancelAnimationFrame(rafId.current);
     };
-  }, [updateScrollProgress, isDragging]);
+  }, [measureTrack, updateScrollProgress]);
 
-  // Smooth scroll to card when node is clicked
+  // Smooth scroll to card when milestone node or track is clicked
   const scrollToItem = (index: number) => {
     const el = itemRefs.current[index];
     if (el) {
@@ -122,6 +129,7 @@ const Experience: React.FC = () => {
   const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
     if (!trackContainerRef.current) return;
     e.preventDefault();
+    isDraggingRef.current = true;
     setIsDragging(true);
     e.currentTarget.setPointerCapture(e.pointerId);
 
@@ -129,14 +137,13 @@ const Experience: React.FC = () => {
     const clickY = e.clientY - rect.top;
     const p = Math.max(0, Math.min(1, clickY / rect.height));
 
-    targetProgress.current = p;
-    currentProgress.current = p;
     if (beamRef.current) beamRef.current.style.height = `${p * 100}%`;
     if (handleRef.current) handleRef.current.style.top = `${p * 100}%`;
 
+    const threshold1 = node1RatioRef.current ? node1RatioRef.current * 0.72 : 0.36;
     let active = 0;
-    if (p >= 0.72) active = 2;
-    else if (p >= 0.32) active = 1;
+    if (p >= 0.85) active = 2;
+    else if (p >= threshold1) active = 1;
 
     if (active !== activeStepRef.current) {
       activeStepRef.current = active;
@@ -145,19 +152,18 @@ const Experience: React.FC = () => {
   };
 
   const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (!isDragging || !trackContainerRef.current) return;
+    if (!isDraggingRef.current || !trackContainerRef.current) return;
     const rect = trackContainerRef.current.getBoundingClientRect();
     const clickY = e.clientY - rect.top;
     const p = Math.max(0, Math.min(1, clickY / rect.height));
 
-    targetProgress.current = p;
-    currentProgress.current = p;
     if (beamRef.current) beamRef.current.style.height = `${p * 100}%`;
     if (handleRef.current) handleRef.current.style.top = `${p * 100}%`;
 
+    const threshold1 = node1RatioRef.current ? node1RatioRef.current * 0.72 : 0.36;
     let active = 0;
-    if (p >= 0.72) active = 2;
-    else if (p >= 0.32) active = 1;
+    if (p >= 0.85) active = 2;
+    else if (p >= threshold1) active = 1;
 
     if (active !== activeStepRef.current) {
       activeStepRef.current = active;
@@ -166,23 +172,30 @@ const Experience: React.FC = () => {
   };
 
   const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (!isDragging) return;
+    if (!isDraggingRef.current) return;
+    isDraggingRef.current = false;
     setIsDragging(false);
     try {
       e.currentTarget.releasePointerCapture(e.pointerId);
-    } catch (_) {}
+    } catch (_) { }
 
-    const p = currentProgress.current;
+    if (!trackContainerRef.current) return;
+    const rect = trackContainerRef.current.getBoundingClientRect();
+    const clickY = e.clientY - rect.top;
+    const p = Math.max(0, Math.min(1, clickY / rect.height));
+
+    const threshold1 = node1RatioRef.current ? node1RatioRef.current * 0.72 : 0.36;
     let active = 0;
-    if (p >= 0.72) active = 2;
-    else if (p >= 0.32) active = 1;
+    if (p >= 0.85) active = 2;
+    else if (p >= threshold1) active = 1;
+
     scrollToItem(active);
   };
 
   return (
     <section id="experience" className="scroll-mt-24 py-24 bg-slate-100/60 dark:bg-[#111827]/40 border-y border-slate-200 dark:border-slate-800/60 relative transition-colors">
       <div className="max-w-7xl mx-auto px-6">
-        
+
         {/* Section Header */}
         <div className="flex items-center gap-4 mb-16">
           <div className="w-8 h-px bg-blue-500" />
@@ -193,15 +206,16 @@ const Experience: React.FC = () => {
         <div className="max-w-4xl mx-auto">
           {/* Timeline Container */}
           <div ref={containerRef} className="relative pl-6 sm:pl-8 space-y-10 sm:space-y-12">
-            
-            {/* Timeline Rail Column - Strictly aligned along x-axis with nodes */}
+
+            {/* Timeline Rail Column - Connected from Node 0 to Node 2 */}
             <div
               ref={trackContainerRef}
               onPointerDown={handlePointerDown}
               onPointerMove={handlePointerMove}
               onPointerUp={handlePointerUp}
               onPointerCancel={handlePointerUp}
-              className="absolute left-6 sm:left-8 top-7 bottom-7 w-8 -translate-x-1/2 z-20 cursor-pointer group/rail select-none touch-none"
+              className="absolute left-6 sm:left-8 top-6 sm:top-7 w-8 -translate-x-1/2 z-20 cursor-pointer group/rail select-none touch-none"
+              style={{ height: trackHeight ? `${trackHeight}px` : 'calc(100% - 14rem)' }}
               title="Interactive Timeline Track - Drag handle or click to navigate"
             >
               {/* 1. Static Inactive Base Rail (Always visible) */}
@@ -210,20 +224,20 @@ const Experience: React.FC = () => {
               {/* 2. Dynamic Illuminated Glowing Beam */}
               <div
                 ref={beamRef}
-                className="absolute left-1/2 -translate-x-1/2 top-0 w-[3px] bg-gradient-to-b from-blue-600 via-sky-400 to-cyan-300 rounded-full shadow-[0_0_12px_rgba(56,189,248,0.8)] pointer-events-none group-hover/rail:w-[4px] transition-[width]"
+                className="absolute left-1/2 -translate-x-1/2 top-0 w-[3px] bg-gradient-to-b from-blue-600 via-sky-400 to-cyan-300 rounded-full shadow-[0_0_14px_rgba(56,189,248,0.85)] pointer-events-none group-hover/rail:w-[4px] transition-[width] will-change-[height]"
                 style={{ height: '0%' }}
               />
 
               {/* 3. Moveable Interactive Energy Bead Handle (Draggable & Scroll-driven) */}
               <div
                 ref={handleRef}
-                className={`absolute left-1/2 -translate-x-1/2 -mt-2 w-4 h-4 rounded-full bg-gradient-to-tr from-sky-300 via-blue-500 to-blue-600 shadow-[0_0_14px_2px_rgba(56,189,248,0.9)] border-2 border-white dark:border-[#0B0F17] flex items-center justify-center transition-transform z-30 ${
-                  isDragging ? 'cursor-grabbing scale-125 ring-4 ring-blue-500/30' : 'cursor-grab hover:scale-125'
+                className={`absolute left-1/2 -translate-x-1/2 -mt-2.5 w-5 h-5 rounded-full bg-gradient-to-tr from-sky-300 via-blue-500 to-blue-600 shadow-[0_0_16px_3px_rgba(56,189,248,0.9)] border-2 border-white dark:border-[#0B0F17] flex items-center justify-center transition-transform z-30 will-change-[top] ${
+                  isDragging ? 'cursor-grabbing scale-125 ring-4 ring-blue-500/40' : 'cursor-grab hover:scale-125'
                 }`}
                 style={{ top: '0%' }}
               >
                 <span className="w-1.5 h-1.5 rounded-full bg-white shadow-sm" />
-                <span className="absolute -inset-1 rounded-full bg-sky-400/25 animate-ping pointer-events-none" />
+                <span className="absolute -inset-1 rounded-full bg-sky-400/30 animate-ping pointer-events-none" />
               </div>
             </div>
 
@@ -243,26 +257,24 @@ const Experience: React.FC = () => {
                   onMouseLeave={() => setHoveredIndex(null)}
                   className="relative pl-8 sm:pl-10 group"
                 >
-                  
+
                   {/* Timeline Node Icon Button - Centered on Rail, Highly Responsive */}
                   <button
                     type="button"
                     onClick={() => scrollToItem(index)}
                     aria-label={`Jump to ${exp.role} at ${exp.company}`}
                     title={`Click to view ${exp.company}`}
-                    className={`absolute left-0 top-6 sm:top-7 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full border-2 transition-all duration-300 z-10 flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 cursor-pointer ${
-                      isReached
-                        ? 'bg-blue-600 dark:bg-blue-500 border-blue-200 dark:border-blue-300 shadow-[0_0_12px_rgba(59,130,246,0.6)] scale-110'
-                        : 'bg-white dark:bg-[#0B0F17] border-slate-300 dark:border-slate-700 hover:border-blue-400 hover:scale-110'
-                    }`}
+                    className={`absolute left-0 top-6 sm:top-7 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full border-2 transition-all duration-300 z-10 flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 cursor-pointer ${isReached
+                      ? 'bg-blue-600 dark:bg-blue-500 border-blue-200 dark:border-blue-300 shadow-[0_0_12px_rgba(59,130,246,0.6)] scale-110'
+                      : 'bg-white dark:bg-[#0B0F17] border-slate-300 dark:border-slate-700 hover:border-blue-400 hover:scale-110'
+                      }`}
                   >
                     {/* Inner Node Center Dot */}
                     <span
-                      className={`rounded-full transition-all duration-300 ${
-                        isReached
-                          ? 'w-1.5 h-1.5 bg-white dark:bg-sky-100'
-                          : 'w-1 h-1 bg-slate-400 dark:bg-slate-600'
-                      }`}
+                      className={`rounded-full transition-all duration-300 ${isReached
+                        ? 'w-1.5 h-1.5 bg-white dark:bg-sky-100'
+                        : 'w-1 h-1 bg-slate-400 dark:bg-slate-600'
+                        }`}
                     />
 
                     {/* Ambient Radar Pulse for current leading milestone */}
@@ -273,15 +285,14 @@ const Experience: React.FC = () => {
 
                   {/* Experience Card */}
                   <div
-                    className={`p-6 sm:p-8 rounded-3xl transition-all duration-300 border ${
-                      exp.isCurrent
-                        ? 'bg-white dark:bg-[#172033] border-blue-500/40 shadow-lg dark:shadow-xl dark:shadow-black/40 ring-1 ring-blue-500/20'
-                        : isCardHovered
+                    className={`p-6 sm:p-8 rounded-[12px] transition-all duration-300 border ${exp.isCurrent
+                      ? 'bg-white dark:bg-[#172033] border-blue-500/40 shadow-lg dark:shadow-xl dark:shadow-black/40 ring-1 ring-blue-500/20'
+                      : isCardHovered
                         ? 'bg-white dark:bg-[#172033]/90 border-blue-500/40 shadow-md dark:shadow-lg dark:shadow-black/30'
                         : 'bg-white dark:bg-[#172033]/60 border-slate-200 dark:border-slate-800/90 hover:border-slate-300 dark:hover:border-slate-700 hover:bg-slate-50 dark:hover:bg-[#172033]/90 shadow-sm'
-                    }`}
+                      }`}
                   >
-                    
+
                     {/* Card Header: Role, Company, Period, Location */}
                     <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-6">
                       <div>

@@ -12,7 +12,7 @@ const Skills: React.FC = () => {
   return (
     <section id="skills" className="scroll-mt-24 py-24 bg-slate-100/60 dark:bg-[#111827]/40 border-y border-slate-200 dark:border-slate-800/60 relative transition-colors">
       <div className="max-w-7xl mx-auto px-6">
-        
+
         {/* Section Header */}
         <div className="flex items-center gap-4 mb-16">
           <div className="w-8 h-px bg-blue-500" />
@@ -34,7 +34,7 @@ const Skills: React.FC = () => {
           {SKILL_GROUPS.map((group, idx) => (
             <div
               key={group.category}
-              className="p-6 rounded-3xl bg-white dark:bg-[#172033]/70 border border-slate-200 dark:border-slate-800/90 hover:border-blue-500/40 hover:bg-slate-50/50 dark:hover:bg-[#172033]/90 transition-all duration-300 flex flex-col justify-between group shadow-sm dark:shadow-xl dark:shadow-black/20"
+              className="p-6 rounded-[12px] bg-white dark:bg-[#172033]/70 border border-slate-200 dark:border-slate-800/90 hover:border-blue-500/40 hover:bg-slate-50/50 dark:hover:bg-[#172033]/90 transition-all duration-300 flex flex-col justify-between group shadow-sm dark:shadow-xl dark:shadow-black/20"
             >
               <div>
                 <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-200 dark:border-slate-800/80">

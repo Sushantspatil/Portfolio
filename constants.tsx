@@ -170,33 +170,6 @@ export const PROJECTS: Project[] = [
     accentColor: "#3B82F6"
   },
   {
-    id: "maldives-experts",
-    title: "Maldives Experts",
-    category: "Luxury Travel & Resort Booking Platform",
-    type: "Live Project",
-    overview: "A specialized luxury travel and holiday booking platform offering curated Maldives vacation packages, resort directories, and custom villa itinerary planning.",
-    contributions: [
-      "Architected and developed a responsive, high-performance web platform for luxury Maldives holiday planning, resort exploration, and booking inquiries.",
-      "Engineered dynamic resort and atoll showcase directories with modern typography, optimized asset loading, and interactive filter controls.",
-      "Built custom quote inquiry and package booking workflows designed to provide smooth lead generation and responsive user experiences across all devices."
-    ],
-    features: [
-      {
-        title: "Platform Capabilities & Workflows",
-        items: [
-          "Curated Maldives Holiday Packages (Honeymoons, all-inclusive luxury, family getaways)",
-          "Handpicked Resort & Island Directory with amenity breakdowns",
-          "Direct Travel Inquiry & Custom Itinerary Planning Workflows",
-          "High-performance responsive UI built with modern React.js architecture"
-        ]
-      }
-    ],
-    tags: ["React.js", "Vite", "Tailwind CSS", "REST APIs", "Responsive UI", "Web Performance"],
-    link: "https://maldivesexperts.co.za/",
-    isLive: true,
-    accentColor: "#0EA5E9"
-  },
-  {
     id: "koniwala-crm",
     title: "Koniwala Matrimonials CRM",
     category: "Matrimonial CRM and Business Operations Platform",
@@ -232,6 +205,33 @@ export const PROJECTS: Project[] = [
     tags: ["NestJS", "React.js", "PostgreSQL", "Prisma ORM", "Redis", "REST APIs"],
     isLive: false,
     accentColor: "#38BDF8"
+  },
+  {
+    id: "maldives-experts",
+    title: "Maldives Experts",
+    category: "Luxury Travel & Resort Booking Platform",
+    type: "Live Project",
+    overview: "A specialized luxury travel and holiday booking platform offering curated Maldives vacation packages, resort directories, and custom villa itinerary planning.",
+    contributions: [
+      "Architected and developed a responsive, high-performance web platform for luxury Maldives holiday planning, resort exploration, and booking inquiries.",
+      "Engineered dynamic resort and atoll showcase directories with modern typography, optimized asset loading, and interactive filter controls.",
+      "Built custom quote inquiry and package booking workflows designed to provide smooth lead generation and responsive user experiences across all devices."
+    ],
+    features: [
+      {
+        title: "Platform Capabilities & Workflows",
+        items: [
+          "Curated Maldives Holiday Packages (Honeymoons, all-inclusive luxury, family getaways)",
+          "Handpicked Resort & Island Directory with amenity breakdowns",
+          "Direct Travel Inquiry & Custom Itinerary Planning Workflows",
+          "High-performance responsive UI built with modern React.js architecture"
+        ]
+      }
+    ],
+    tags: ["React.js", "Vite", "Tailwind CSS", "REST APIs", "Responsive UI", "Web Performance"],
+    link: "https://maldivesexperts.co.za/",
+    isLive: true,
+    accentColor: "#0EA5E9"
   },
   {
     id: "aadhaar-voting",

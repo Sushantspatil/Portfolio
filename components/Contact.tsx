@@ -28,7 +28,7 @@ const Contact: React.FC = () => {
   return (
     <section id="contact" className="scroll-mt-24 py-24 relative">
       <div className="max-w-7xl mx-auto px-6">
-        
+
         {/* Section Header */}
         <div className="flex items-center gap-4 mb-16">
           <div className="w-8 h-px bg-blue-500" />
@@ -37,7 +37,7 @@ const Contact: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          
+
           {/* Left Column: Let's Connect Heading & Contact Channels */}
           <div className="lg:col-span-5">
             <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-[#F8FAFC] tracking-tight mb-4">
@@ -50,7 +50,7 @@ const Contact: React.FC = () => {
             {/* Direct Contact Cards */}
             <div className="space-y-4">
               {/* Email Direct Card */}
-              <div className="p-4 rounded-2xl bg-white dark:bg-[#172033]/70 border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between gap-4">
+              <div className="p-4 rounded-[12px] bg-white dark:bg-[#172033]/70 border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between gap-4">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-600/15 border border-blue-200 dark:border-blue-500/20 text-blue-600 dark:text-blue-400 flex items-center justify-center">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -59,7 +59,7 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <span className="text-[10px] font-mono text-slate-500 uppercase block">Email</span>
-                    <a 
+                    <a
                       href={`mailto:${PERSONAL_INFO.email}`}
                       className="text-sm font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                     >
@@ -83,12 +83,12 @@ const Contact: React.FC = () => {
                 href={PERSONAL_INFO.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-4 rounded-2xl bg-white dark:bg-[#172033]/70 border border-slate-200 dark:border-slate-800 hover:border-blue-500/40 hover:bg-slate-50 dark:hover:bg-[#172033]/90 shadow-sm transition-all flex items-center justify-between group"
+                className="p-4 rounded-[12px] bg-white dark:bg-[#172033]/70 border border-slate-200 dark:border-slate-800 hover:border-blue-500/40 hover:bg-slate-50 dark:hover:bg-[#172033]/90 shadow-sm transition-all flex items-center justify-between group"
               >
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-600/15 border border-blue-200 dark:border-blue-500/20 text-blue-600 dark:text-blue-400 flex items-center justify-center">
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                     </svg>
                   </div>
                   <div>
@@ -106,7 +106,7 @@ const Contact: React.FC = () => {
                 href={PERSONAL_INFO.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-4 rounded-2xl bg-white dark:bg-[#172033]/70 border border-slate-200 dark:border-slate-800 hover:border-slate-400 dark:hover:border-slate-700 hover:bg-slate-50 dark:hover:bg-[#172033]/90 shadow-sm transition-all flex items-center justify-between group"
+                className="p-4 rounded-[12px] bg-white dark:bg-[#172033]/70 border border-slate-200 dark:border-slate-800 hover:border-slate-400 dark:hover:border-slate-700 hover:bg-slate-50 dark:hover:bg-[#172033]/90 shadow-sm transition-all flex items-center justify-between group"
               >
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 flex items-center justify-center">
@@ -125,7 +125,7 @@ const Contact: React.FC = () => {
               </a>
 
               {/* Location Card */}
-              <div className="p-4 rounded-2xl bg-white dark:bg-[#172033]/70 border border-slate-200 dark:border-slate-800 shadow-sm flex items-center gap-3">
+              <div className="p-4 rounded-[12px] bg-white dark:bg-[#172033]/70 border border-slate-200 dark:border-slate-800 shadow-sm flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 flex items-center justify-center">
                   📍
                 </div>
@@ -141,7 +141,7 @@ const Contact: React.FC = () => {
 
           {/* Right Column: Direct Email Launcher Form (Real delivery, no fake API) */}
           <div className="lg:col-span-7">
-            <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-[#172033]/80 border border-slate-200 dark:border-slate-800/90 shadow-xl dark:shadow-2xl shadow-slate-200/50 dark:shadow-black/40">
+            <div className="p-6 sm:p-8 rounded-[12px] bg-white dark:bg-[#172033]/80 border border-slate-200 dark:border-slate-800/90 shadow-xl dark:shadow-2xl shadow-slate-200/50 dark:shadow-black/40">
               <div className="mb-6">
                 <h3 className="text-lg font-bold text-slate-900 dark:text-[#F8FAFC]">Direct Email Dispatch</h3>
                 <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">
@@ -198,7 +198,7 @@ const Contact: React.FC = () => {
                 <div className="pt-2 flex flex-col sm:flex-row gap-3">
                   <button
                     type="submit"
-                    className="flex-1 py-3.5 px-6 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm flex items-center justify-center gap-2 shadow-lg shadow-blue-600/25 active:scale-95 transition-all"
+                    className="flex-1 py-3.5 px-6 rounded-[12px] bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm flex items-center justify-center gap-2 shadow-lg shadow-blue-600/25 active:scale-95 transition-all"
                   >
                     <span>Send Message via Email Client</span>
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -208,7 +208,7 @@ const Contact: React.FC = () => {
 
                   <a
                     href={`mailto:${PERSONAL_INFO.email}`}
-                    className="py-3.5 px-5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium text-sm flex items-center justify-center gap-2 border border-slate-300 dark:border-slate-700 transition-all text-center"
+                    className="py-3.5 px-5 rounded-[12px] bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium text-sm flex items-center justify-center gap-2 border border-slate-300 dark:border-slate-700 transition-all text-center"
                   >
                     Open Mail Directly
                   </a>

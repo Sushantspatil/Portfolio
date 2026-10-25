@@ -53,7 +53,7 @@ const AiAssistant: React.FC = () => {
   return (
     <section id="ai-assistant" className="scroll-mt-24 py-24 bg-slate-100/70 dark:bg-[#111827]/40 border-y border-slate-200 dark:border-slate-800/60 relative">
       <div className="max-w-4xl mx-auto px-6">
-        
+
         {/* Section Header */}
         <div className="flex items-center gap-4 mb-12">
           <div className="w-8 h-px bg-blue-500" />
@@ -71,8 +71,8 @@ const AiAssistant: React.FC = () => {
         </div>
 
         {/* Chat Window Container */}
-        <div className="bg-white dark:bg-[#172033] border border-slate-200 dark:border-slate-700/80 rounded-3xl shadow-xl dark:shadow-2xl overflow-hidden flex flex-col h-[580px]">
-          
+        <div className="bg-white dark:bg-[#172033] border border-slate-200 dark:border-slate-700/80 rounded-[12px] shadow-xl dark:shadow-2xl overflow-hidden flex flex-col h-[580px]">
+
           {/* Header Bar */}
           <div className="p-4 sm:p-5 border-b border-slate-200 dark:border-slate-800 bg-slate-50/90 dark:bg-[#0B0F17]/70 backdrop-blur-md flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -122,11 +122,10 @@ const AiAssistant: React.FC = () => {
             {messages.map((msg, idx) => (
               <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                 <div
-                  className={`max-w-[85%] sm:max-w-[78%] rounded-2xl px-4 py-3 text-xs sm:text-sm leading-relaxed whitespace-pre-wrap ${
-                    msg.role === 'user'
-                      ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20 rounded-tr-none'
-                      : 'bg-slate-100 dark:bg-[#0B0F17]/90 text-slate-800 dark:text-slate-200 rounded-tl-none border border-slate-200 dark:border-slate-800'
-                  }`}
+                  className={`max-w-[85%] sm:max-w-[78%] rounded-2xl px-4 py-3 text-xs sm:text-sm leading-relaxed whitespace-pre-wrap ${msg.role === 'user'
+                    ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20 rounded-tr-none'
+                    : 'bg-slate-100 dark:bg-[#0B0F17]/90 text-slate-800 dark:text-slate-200 rounded-tl-none border border-slate-200 dark:border-slate-800'
+                    }`}
                 >
                   {msg.content}
                 </div>

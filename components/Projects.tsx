@@ -8,7 +8,7 @@ const Projects: React.FC = () => {
   return (
     <section id="projects" className="scroll-mt-24 py-24 relative">
       <div className="max-w-7xl mx-auto px-6">
-        
+
         {/* Section Header Divider Line (Consistent across About, Experience, Skills, Education, Contact) */}
         <div className="flex items-center gap-4 mb-12 sm:mb-16">
           <div className="w-8 h-px bg-blue-500" />
@@ -27,9 +27,9 @@ const Projects: React.FC = () => {
             </p>
           </div>
 
-          <a 
-            href="https://github.com/Sushantspatil?tab=repositories" 
-            target="_blank" 
+          <a
+            href="https://github.com/Sushantspatil?tab=repositories"
+            target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-xs font-mono font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 py-2.5 px-4 rounded-xl bg-white dark:bg-[#172033] border border-slate-200 dark:border-slate-700/80 transition-all hover:border-blue-500/50 w-fit shadow-sm shrink-0"
           >
@@ -41,9 +41,9 @@ const Projects: React.FC = () => {
         {/* Projects Grid - Balanced 2x2 Grid Matching Other Portfolio Components */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {PROJECTS.map((project, index) => (
-            <div 
+            <div
               key={project.id}
-              className="rounded-3xl bg-white dark:bg-[#172033]/70 border border-slate-200 dark:border-slate-800/90 hover:border-slate-300 dark:hover:border-slate-700 hover:bg-slate-50/50 dark:hover:bg-[#172033]/90 transition-all duration-300 flex flex-col justify-between overflow-hidden group shadow-md dark:shadow-xl dark:shadow-black/30"
+              className="rounded-[12px] bg-white dark:bg-[#172033]/70 border border-slate-200 dark:border-slate-800/90 hover:border-slate-300 dark:hover:border-slate-700 hover:bg-slate-50/50 dark:hover:bg-[#172033]/90 transition-all duration-300 flex flex-col justify-between overflow-hidden group shadow-md dark:shadow-xl dark:shadow-black/30"
             >
               <div>
                 {/* Project Header / Technical Visualizer Banner */}
@@ -188,7 +188,7 @@ const Projects: React.FC = () => {
 
         {/* Case Study Details Modal */}
         {selectedProject && (
-          <div 
+          <div
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 dark:bg-black/80 backdrop-blur-md animate-fadeIn"
             role="dialog"
             aria-modal="true"

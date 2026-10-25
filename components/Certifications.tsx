@@ -5,7 +5,7 @@ const Certifications: React.FC = () => {
   return (
     <section id="certifications" className="scroll-mt-24 py-20 bg-slate-100/60 dark:bg-[#111827]/40 border-t border-slate-200 dark:border-slate-800/60 relative transition-colors">
       <div className="max-w-7xl mx-auto px-6">
-        
+
         {/* Section Header */}
         <div className="flex items-center gap-4 mb-12">
           <div className="w-8 h-px bg-blue-500" />
@@ -21,9 +21,9 @@ const Certifications: React.FC = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {CERTIFICATIONS.map((cert, index) => (
-            <div 
-              key={index} 
-              className="p-6 rounded-2xl bg-white dark:bg-[#172033]/60 border border-slate-200 dark:border-slate-800/80 hover:border-blue-500/30 transition-all flex flex-col justify-between group shadow-sm"
+            <div
+              key={index}
+              className="p-6 rounded-[12px] bg-white dark:bg-[#172033]/60 border border-slate-200 dark:border-slate-800/80 hover:border-blue-500/30 transition-all flex flex-col justify-between group shadow-sm"
             >
               <div>
                 <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-600/10 border border-blue-200 dark:border-blue-500/20 flex items-center justify-center text-blue-600 dark:text-blue-400 mb-4 group-hover:bg-blue-600 group-hover:text-white transition-all">
@@ -34,11 +34,11 @@ const Certifications: React.FC = () => {
                 <h3 className="text-base font-bold text-slate-900 dark:text-slate-100 mb-1">{cert.name}</h3>
                 <p className="text-xs text-slate-500 dark:text-slate-400 mb-4 font-mono">{cert.issuer}</p>
               </div>
-              
+
               {cert.link && (
-                <a 
-                  href={cert.link} 
-                  target="_blank" 
+                <a
+                  href={cert.link}
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors pt-3 border-t border-slate-100 dark:border-slate-800"
                 >

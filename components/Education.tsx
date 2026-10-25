@@ -5,7 +5,7 @@ const Education: React.FC = () => {
   return (
     <section id="education" className="scroll-mt-24 py-20 relative">
       <div className="max-w-7xl mx-auto px-6">
-        
+
         {/* Section Header */}
         <div className="flex items-center gap-4 mb-12">
           <div className="w-8 h-px bg-blue-500" />
@@ -14,8 +14,8 @@ const Education: React.FC = () => {
         </div>
 
         <div className="max-w-3xl mx-auto">
-          <div className="p-8 rounded-3xl bg-white dark:bg-[#172033]/70 border border-slate-200 dark:border-slate-800/90 shadow-md dark:shadow-xl dark:shadow-black/30 relative overflow-hidden">
-            
+          <div className="p-8 rounded-[12px] bg-white dark:bg-[#172033]/70 border border-slate-200 dark:border-slate-800/90 shadow-md dark:shadow-xl dark:shadow-black/30 relative overflow-hidden">
+
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 rounded-2xl bg-blue-50 dark:bg-blue-600/15 border border-blue-200 dark:border-blue-500/30 text-blue-600 dark:text-blue-400 flex items-center justify-center flex-shrink-0 text-xl shadow-inner">
