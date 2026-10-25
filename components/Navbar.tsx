@@ -35,21 +35,39 @@ const Navbar: React.FC = () => {
         targetProgress.current = 0;
       }
 
-      // Track active section
-      const sections = ['hero', 'about', 'highlights', 'experience', 'projects', 'skills', 'education', 'contact'];
-      const scrollPosition = scrollY + 160;
+      // Track active section using accurate viewport bounding rects
+      const trackedSections = [
+        { id: 'hero', navId: 'hero' },
+        { id: 'about', navId: 'about' },
+        { id: 'highlights', navId: 'about' },
+        { id: 'experience', navId: 'experience' },
+        { id: 'projects', navId: 'projects' },
+        { id: 'skills', navId: 'skills' },
+        { id: 'education', navId: 'education' },
+        { id: 'contact', navId: 'contact' },
+      ];
 
-      for (const sectionId of sections) {
-        const el = document.getElementById(sectionId);
+      // If at or very close to page bottom, activate contact
+      if (window.innerHeight + scrollY >= document.documentElement.scrollHeight - 60) {
+        setActiveSection('contact');
+        return;
+      }
+
+      // Check sections: the most advanced visible section at or above the threshold is active
+      const threshold = 180;
+      let matchedSection = 'hero';
+
+      for (const sec of trackedSections) {
+        const el = document.getElementById(sec.id);
         if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPosition >= top && scrollPosition < top + height) {
-            setActiveSection(sectionId);
-            break;
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= threshold) {
+            matchedSection = sec.navId;
           }
         }
       }
+
+      setActiveSection(matchedSection);
     };
 
     // Smooth linear interpolation loop (60fps/120fps fluid glide without stepwise notches)
@@ -152,6 +170,7 @@ const Navbar: React.FC = () => {
                 <a
                   key={item.name}
                   href={item.href}
+                  onClick={() => setActiveSection(item.id)}
                   className={`text-xs font-medium tracking-wide transition-colors relative py-1.5 group ${
                     isActive
                       ? 'text-slate-950 dark:text-white font-semibold'
@@ -311,7 +330,10 @@ const Navbar: React.FC = () => {
               <a
                 key={item.name}
                 href={item.href}
-                onClick={() => setIsMenuOpen(false)}
+                onClick={() => {
+                  setActiveSection(item.id);
+                  setIsMenuOpen(false);
+                }}
                 className={`py-3 px-2 text-base font-medium flex items-center justify-between transition-colors border-b border-slate-100 dark:border-slate-800/40 ${
                   isActive
                     ? 'text-blue-600 dark:text-blue-400 font-semibold'

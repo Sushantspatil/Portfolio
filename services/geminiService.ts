@@ -57,11 +57,12 @@ export const answerCareerQuery = async (query: string): Promise<string> => {
   if (
     normalized.includes('project') || 
     normalized.includes('visiblo') || 
+    normalized.includes('maldives') ||
     normalized.includes('koniwala') || 
     normalized.includes('voting') || 
     normalized.includes('aadhaar')
   ) {
-    return `Sushant has built and contributed to 3 primary engineering projects:\n\n1. **Visiblo AI** (AI-Powered Local SEO SaaS Platform):\n• Contributed to local SEO management, review monitoring, and business automation.\n• Developed reusable UI dashboards and integrated REST APIs.\n• Live at: https://www.visibloai.com/\n\n2. **Koniwala Matrimonials CRM** (Enterprise Operations Platform):\n• Built 8 dashboard sections and 3 specialized modules (AI matchmaking, WhatsApp profile capture, employee attendance) using NestJS, React, PostgreSQL, Prisma ORM, and Redis.\n\n3. **Aadhaar Voting System** (Blockchain Voting Application):\n• Implemented Aadhaar-linked OTP verification, eligibility checks, candidate management, and one-vote-per-user validation on a blockchain ledger.`;
+    return `Sushant has built and contributed to 4 key engineering projects:\n\n1. **Visiblo AI** (AI-Powered Local SEO SaaS Platform):\n• Contributed to local SEO management, review monitoring, and business automation.\n• Developed reusable UI dashboards and integrated REST APIs.\n• Live at: https://www.visibloai.com/\n\n2. **Maldives Experts** (Luxury Travel & Resort Booking Platform):\n• Curated Maldives holiday packages, resort directories, and custom villa itinerary planning.\n• Built responsive UI and inquiry booking workflows with React.js and Vite.\n• Live at: https://maldivesexperts.co.za/\n\n3. **Koniwala Matrimonials CRM** (Enterprise Operations Platform):\n• Built 8 dashboard sections and 3 specialized modules (AI matchmaking, WhatsApp profile capture, employee attendance) using NestJS, React, PostgreSQL, Prisma ORM, and Redis.\n\n4. **Aadhaar Voting System** (Blockchain Voting Application):\n• Implemented Aadhaar-linked OTP verification, eligibility checks, candidate management, and one-vote-per-user validation on a blockchain ledger.`;
   }
 
   // 4. Skills / Tech Stack

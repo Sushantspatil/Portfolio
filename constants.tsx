@@ -153,10 +153,48 @@ export const PROJECTS: Project[] = [
       "Developed reusable UI components and dashboards focused on responsiveness, maintainability, and consistent user experience.",
       "Integrated RESTful APIs for front-end/back-end communication, business workflows, and application data management."
     ],
+    features: [
+      {
+        title: "Platform Capabilities & Automation",
+        items: [
+          "Local SEO & Review Automation",
+          "Customer Feedback Tracking",
+          "Business Workflow Pipelines",
+          "Responsive Dashboard Architecture"
+        ]
+      }
+    ],
     tags: ["React.js", "REST APIs", "SaaS Platform", "UI Architecture", "Business Automation"],
     link: "https://www.visibloai.com/",
     isLive: true,
     accentColor: "#3B82F6"
+  },
+  {
+    id: "maldives-experts",
+    title: "Maldives Experts",
+    category: "Luxury Travel & Resort Booking Platform",
+    type: "Live Project",
+    overview: "A specialized luxury travel and holiday booking platform offering curated Maldives vacation packages, resort directories, and custom villa itinerary planning.",
+    contributions: [
+      "Architected and developed a responsive, high-performance web platform for luxury Maldives holiday planning, resort exploration, and booking inquiries.",
+      "Engineered dynamic resort and atoll showcase directories with modern typography, optimized asset loading, and interactive filter controls.",
+      "Built custom quote inquiry and package booking workflows designed to provide smooth lead generation and responsive user experiences across all devices."
+    ],
+    features: [
+      {
+        title: "Platform Capabilities & Workflows",
+        items: [
+          "Curated Maldives Holiday Packages (Honeymoons, all-inclusive luxury, family getaways)",
+          "Handpicked Resort & Island Directory with amenity breakdowns",
+          "Direct Travel Inquiry & Custom Itinerary Planning Workflows",
+          "High-performance responsive UI built with modern React.js architecture"
+        ]
+      }
+    ],
+    tags: ["React.js", "Vite", "Tailwind CSS", "REST APIs", "Responsive UI", "Web Performance"],
+    link: "https://maldivesexperts.co.za/",
+    isLive: true,
+    accentColor: "#0EA5E9"
   },
   {
     id: "koniwala-crm",

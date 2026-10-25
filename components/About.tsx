@@ -3,9 +3,9 @@ import { ABOUT_COPY, WORK_AREAS } from '../constants';
 
 const About: React.FC = () => {
   return (
-    <section id="about" className="scroll-mt-24 py-24 bg-slate-100/60 dark:bg-[#111827]/40 border-y border-slate-200 dark:border-slate-800/60 relative transition-colors">
+    <section id="about" className="scroll-mt-24 py-8 bg-slate-100/60 dark:bg-[#111827]/40 border-y border-slate-200 dark:border-slate-800/60 relative transition-colors">
       <div className="max-w-7xl mx-auto px-6">
-        
+
         {/* Section Header */}
         <div className="flex items-center gap-4 mb-16">
           <div className="w-8 h-px bg-blue-500" />
@@ -14,7 +14,7 @@ const About: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          
+
           {/* Left Column: Narrative Introduction */}
           <div className="lg:col-span-6 flex flex-col justify-between h-full">
             <div>
@@ -68,14 +68,14 @@ const About: React.FC = () => {
                       </h4>
                       <span className="text-xs text-slate-500 font-mono">0{idx + 1}</span>
                     </div>
-                    
+
                     <p className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed mb-3">
                       {area.description}
                     </p>
 
                     <div className="flex flex-wrap gap-1.5">
                       {area.tech.map((t) => (
-                        <span 
+                        <span
                           key={t}
                           className="px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-slate-100 dark:bg-[#172033] text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700/60"
                         >

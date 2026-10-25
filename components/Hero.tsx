@@ -5,7 +5,7 @@ import SushantImage from '../images/Sushant.jpeg';
 
 const Hero: React.FC = () => {
   return (
-    <section id="hero" className="scroll-mt-28 relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
+    <section id="hero" className="scroll-mt-28 relative pt-32 pb-20 md:pt-40 md:pb-10 overflow-hidden">
       {/* Subtle Ambient Engineering Gradients */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 w-[600px] h-[360px] bg-blue-500/5 dark:bg-blue-600/10 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute top-1/3 right-10 -z-10 w-[350px] h-[350px] bg-sky-400/5 dark:bg-sky-500/5 rounded-full blur-[120px] pointer-events-none" />
@@ -162,7 +162,7 @@ const Hero: React.FC = () => {
 
         </div>
 
-        {/* Hero Bottom Metric Counters */}
+        {/* Hero Bottom Metric Counters
         <div className="mt-20 pt-10 border-t border-slate-200 dark:border-slate-800/80 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           <div className="p-4 rounded-2xl bg-white dark:bg-[#172033]/40 border border-slate-200 dark:border-slate-800/60 shadow-sm">
             <div className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-[#F8FAFC]">3+ Years</div>
@@ -180,7 +180,7 @@ const Hero: React.FC = () => {
             <div className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-[#F8FAFC]">6+</div>
             <div className="text-xs text-slate-600 dark:text-slate-400 mt-1 uppercase tracking-wider font-mono">Full-Stack Projects at Oxstren</div>
           </div>
-        </div>
+        </div> */}
 
       </div>
     </section>
