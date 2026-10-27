@@ -17,13 +17,13 @@ export const PERSONAL_INFO: PersonalInfo = {
   github: "https://github.com/Sushantspatil",
   linkedin: "https://www.linkedin.com/in/sushantspatil/",
   portfolio: "https://sushants-portfolio.web.app/",
-  resumePath: "/resume/Sushant_Patil_Resume.pdf",
+  resumePath: "https://sushantspatil.github.io/Resume/resume_2026_final.pdf",
   availability: "Open to Full Stack Development Opportunities",
   headline: "Hi, I'm Sushant Patil. I build reliable, scalable web applications.",
   summary: "I'm a MERN Full Stack Developer with 3+ years of professional experience building responsive React applications, REST APIs, business dashboards, and backend systems using Node.js, Express.js, NestJS, PostgreSQL, and MongoDB."
 };
 
-export const RESUME_LINK = "/resume/Sushant_Patil_Resume.pdf";
+export const RESUME_LINK = "https://sushantspatil.github.io/Resume/resume_2026_final.pdf";
 
 export const ABOUT_COPY = {
   lead: "I'm a MERN Full Stack Developer based in Mumbai, India, with over three years of professional experience building and maintaining modern web applications.",
@@ -72,20 +72,20 @@ export const HIGHLIGHTS: MetricHighlight[] = [
     skills: ["REST Architecture", "Prisma ORM", "PostgreSQL", "JWT & RBAC", "Validation"]
   },
   {
-    metric: "20+",
-    label: "React Dashboards & Screens",
-    description: "Engineered at Oxstren Wearable Technologies using modular, reusable components with dynamic API-driven functionality.",
-    tag: "Oxstren",
-    status: "Production UI Components",
-    skills: ["React.js", "Redux Toolkit", "Dynamic APIs", "Modular Architecture"]
+    metric: "Internal CRM",
+    label: "Client Management CRM",
+    description: "Developed an internal CRM system at Videowaves using React.js, Node.js, Express.js, and PostgreSQL to streamline client workflows.",
+    tag: "Videowaves",
+    status: "Production CRM System",
+    skills: ["React.js", "Node.js", "Express.js", "PostgreSQL", "CRM Workflows"]
   },
   {
-    metric: "6+",
-    label: "Full-Stack Projects",
-    description: "Client and internal web applications contributed to at Oxstren spanning React, Node, Express, MongoDB, and PostgreSQL.",
-    tag: "Oxstren",
-    status: "End-to-End Delivery",
-    skills: ["Full Stack", "MongoDB", "Node.js", "Express.js", "PostgreSQL"]
+    metric: "Backend APIs",
+    label: "PostgreSQL Services",
+    description: "Designed and integrated backend API services with PostgreSQL at Videowaves to support structured data storage and CRM workflows.",
+    tag: "Videowaves",
+    status: "Data & API Architecture",
+    skills: ["Backend APIs", "PostgreSQL", "REST APIs", "Node.js", "Express.js"]
   },
   {
     metric: "30%",
@@ -107,23 +107,24 @@ export const EXPERIENCES: Experience[] = [
     description: [
       "Built a production-grade Factory Dispatch Automation System using React.js, Node.js, Express.js, and PostgreSQL.",
       "Engineered 40+ production REST API endpoints for authentication, business management, reporting, validation, authorization, database transactions, and error handling.",
-      "Designed REST APIs and PostgreSQL schemas using Prisma ORM.",
+
       "Integrated Docker deployment and IoT devices to support automated factory operations."
     ],
     skills: ["React.js", "Node.js", "Express.js", "PostgreSQL", "Prisma ORM", "Docker", "REST APIs"]
   },
   {
-    company: "Oxstren Wearable Technologies Pvt. Ltd.",
+    company: "Videowaves",
     role: "Full Stack Developer",
     period: "Sep 2024 – Oct 2025",
     location: "Mumbai, India",
     isCurrent: false,
     description: [
-      "Contributed to 6+ full-stack projects using React.js, Node.js, Express.js, MongoDB, and PostgreSQL, developing responsive interfaces and backend services.",
-      "Engineered and integrated 40+ REST API endpoints with JWT authentication, RBAC, request validation, and database operations for business workflows.",
-      "Developed 20+ responsive React.js screens and dashboards using reusable components and dynamic API-driven functionality."
+      "Developed an internal Customer Relationship Management (CRM) system using React.js, Node.js, Express.js, and PostgreSQL to streamline client information management and business workflows.",
+      "Coordinated with clients and stakeholders to gather requirements, translate business needs into technical solutions, and deliver application enhancements.",
+      "Designed and integrated backend API services with PostgreSQL to support structured data storage, retrieval, and CRM.",
+      "Troubleshot application issues, maintained existing features, and delivered enhancements based on business and client requirements."
     ],
-    skills: ["React.js", "Node.js", "Express.js", "MongoDB", "PostgreSQL", "REST APIs", "JWT Authentication", "RBAC"]
+    skills: ["React.js", "Node.js", "Express.js", "PostgreSQL", "REST APIs", "CRM Architecture", "Client Coordination"]
   },
   {
     company: "Innovins Technologies",
@@ -134,7 +135,7 @@ export const EXPERIENCES: Experience[] = [
     description: [
       "Developed responsive and user-friendly web interfaces using HTML, CSS, JavaScript, and React.js.",
       "Optimized frontend components and assets, improving application performance and reducing page load time by 30%.",
-      "Assisted in backend development using Node.js and Express.js, including API integration and troubleshooting.",
+
       "Collaborated with development teams to debug, test, and maintain web applications using Git and GitHub for version control."
     ],
     skills: ["HTML", "CSS", "JavaScript", "React.js", "Node.js", "Express.js", "Git", "GitHub"]
@@ -173,7 +174,7 @@ export const PROJECTS: Project[] = [
     id: "koniwala-crm",
     title: "Koniwala Matrimonials CRM",
     category: "Matrimonial CRM and Business Operations Platform",
-    type: "Production Platform",
+    type: "Live Project",
     overview: "A matrimonial CRM platform supporting member onboarding, profile management, administrative operations, and business workflows.",
     contributions: [
       "Developed a matrimonial CRM supporting member onboarding, profile management, and administrative operations.",
@@ -203,19 +204,19 @@ export const PROJECTS: Project[] = [
       }
     ],
     tags: ["NestJS", "React.js", "PostgreSQL", "Prisma ORM", "Redis", "REST APIs"],
-    isLive: false,
+    isLive: true,
     accentColor: "#38BDF8"
   },
   {
     id: "maldives-experts",
     title: "Maldives Experts",
-    category: "Luxury Travel & Resort Booking Platform",
+    category: "Full-Stack Travel Booking Platform",
     type: "Live Project",
     overview: "A specialized luxury travel and holiday booking platform offering curated Maldives vacation packages, resort directories, and custom villa itinerary planning.",
     contributions: [
-      "Architected and developed a responsive, high-performance web platform for luxury Maldives holiday planning, resort exploration, and booking inquiries.",
-      "Engineered dynamic resort and atoll showcase directories with modern typography, optimized asset loading, and interactive filter controls.",
-      "Built custom quote inquiry and package booking workflows designed to provide smooth lead generation and responsive user experiences across all devices."
+      "Implemented customer booking management REST API endpoints and backend service logic, strengthening booking workflows with security and financial-integrity validations.",
+      "Developed React-based booking and administration components, including an invoice management page, booking detail views, and customer invoice-loading states.",
+      "Improved deployment reliability by optimizing CI/CD artifact transfers, implementing code-splitting, and resolving build-memory and production configuration issues."
     ],
     features: [
       {

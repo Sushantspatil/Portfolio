@@ -294,7 +294,7 @@ const Navbar: React.FC = () => {
               href={RESUME_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              download="Sushant_Patil_Resume.pdf"
+              download="resume_2026_final.pdf"
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-slate-900 hover:bg-slate-800 text-white dark:bg-slate-100 dark:hover:bg-white dark:text-slate-900 text-xs font-mono font-semibold transition-all active:scale-95 shadow-sm"
             >
               <span>Resume</span>
@@ -397,7 +397,7 @@ const Navbar: React.FC = () => {
             href={RESUME_LINK}
             target="_blank"
             rel="noopener noreferrer"
-            download="Sushant_Patil_Resume.pdf"
+            download="resume_2026_final.pdf"
             onClick={() => setIsMenuOpen(false)}
             className="w-full py-3 rounded-md bg-slate-900 hover:bg-slate-800 text-white dark:bg-slate-100 dark:hover:bg-white dark:text-slate-900 font-semibold text-xs font-mono flex items-center justify-center gap-2 transition-all shadow-md"
           >

@@ -56,7 +56,7 @@ const Hero: React.FC = () => {
                 href={RESUME_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                download="Sushant_Patil_Resume.pdf"
+                download="resume_2026_final.pdf"
                 className="w-full sm:w-auto px-6 py-3.5 bg-white hover:bg-slate-100 text-slate-800 dark:bg-[#172033] dark:hover:bg-slate-800 dark:text-slate-200 font-semibold text-sm rounded-xl transition-all border border-slate-200 dark:border-slate-700/80 hover:border-slate-300 dark:hover:border-slate-600 text-center flex items-center justify-center gap-2 shadow-sm"
               >
                 <svg className="w-4 h-4 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -152,8 +152,8 @@ const Hero: React.FC = () => {
                   🚀
                 </div>
                 <div>
-                  <div className="text-sm font-extrabold text-slate-900 dark:text-white">6+ Projects</div>
-                  <div className="text-[10px] text-slate-500 dark:text-slate-400">At Oxstren Tech</div>
+                  <div className="text-sm font-extrabold text-slate-900 dark:text-white">Internal CRM</div>
+                  <div className="text-[10px] text-slate-500 dark:text-slate-400">At Videowaves</div>
                 </div>
               </div>
 
@@ -174,11 +174,11 @@ const Hero: React.FC = () => {
           </div>
           <div className="p-4 rounded-2xl bg-white dark:bg-[#172033]/40 border border-slate-200 dark:border-slate-800/60 shadow-sm">
             <div className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-[#F8FAFC]">20+</div>
-            <div className="text-xs text-slate-600 dark:text-slate-400 mt-1 uppercase tracking-wider font-mono">React Screens at Oxstren</div>
+            <div className="text-xs text-slate-600 dark:text-slate-400 mt-1 uppercase tracking-wider font-mono">React Screens at Videowaves</div>
           </div>
           <div className="p-4 rounded-2xl bg-white dark:bg-[#172033]/40 border border-slate-200 dark:border-slate-800/60 shadow-sm">
             <div className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-[#F8FAFC]">6+</div>
-            <div className="text-xs text-slate-600 dark:text-slate-400 mt-1 uppercase tracking-wider font-mono">Full-Stack Projects at Oxstren</div>
+            <div className="text-xs text-slate-600 dark:text-slate-400 mt-1 uppercase tracking-wider font-mono">Full-Stack Projects at Videowaves</div>
           </div>
         </div> */}
 

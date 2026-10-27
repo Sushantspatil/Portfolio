@@ -47,10 +47,10 @@ export const answerCareerQuery = async (query: string): Promise<string> => {
     normalized.includes('years') || 
     normalized.includes('history') || 
     normalized.includes('career') ||
-    normalized.includes('oxstren') ||
+    normalized.includes('videowaves') ||
     normalized.includes('innovins')
   ) {
-    return `Sushant has over 3+ years of professional software engineering experience across 3 roles:\n\n1. **${EXPERIENCES[0].company}** (${EXPERIENCES[0].period}) — ${EXPERIENCES[0].role}: Factory Dispatch Automation, 40+ REST APIs, Prisma ORM, Docker.\n2. **${EXPERIENCES[1].company}** (${EXPERIENCES[1].period}) — ${EXPERIENCES[1].role}: Contributed to 6+ full-stack projects, engineered 40+ REST APIs with JWT & RBAC, built 20+ responsive React screens.\n3. **${EXPERIENCES[2].company}** (${EXPERIENCES[2].period}) — ${EXPERIENCES[2].role}: Frontend React development, reduced page load time by 30%, assisted in Node.js backend integration.`;
+    return `Sushant has over 3+ years of professional software engineering experience across 3 roles:\n\n1. **${EXPERIENCES[0].company}** (${EXPERIENCES[0].period}) — ${EXPERIENCES[0].role}: Factory Dispatch Automation, 40+ REST APIs, Docker, IoT.\n2. **${EXPERIENCES[1].company}** (${EXPERIENCES[1].period}) — ${EXPERIENCES[1].role}: Internal CRM system with React, Node, Express & PostgreSQL, backend API services, client solutions.\n3. **${EXPERIENCES[2].company}** (${EXPERIENCES[2].period}) — ${EXPERIENCES[2].role}: Frontend React development, reduced page load time by 30%, version control with Git & GitHub.`;
   }
 
   // 3. Projects
@@ -62,7 +62,7 @@ export const answerCareerQuery = async (query: string): Promise<string> => {
     normalized.includes('voting') || 
     normalized.includes('aadhaar')
   ) {
-    return `Sushant has built and contributed to 4 key engineering projects:\n\n1. **Visiblo AI** (AI-Powered Local SEO SaaS Platform):\n• Contributed to local SEO management, review monitoring, and business automation.\n• Developed reusable UI dashboards and integrated REST APIs.\n• Live at: https://www.visibloai.com/\n\n2. **Koniwala Matrimonials CRM** (Enterprise Operations Platform):\n• Built 8 dashboard sections and 3 specialized modules (AI matchmaking, WhatsApp profile capture, employee attendance) using NestJS, React, PostgreSQL, Prisma ORM, and Redis.\n\n3. **Maldives Experts** (Luxury Travel & Resort Booking Platform):\n• Curated Maldives holiday packages, resort directories, and custom villa itinerary planning.\n• Built responsive UI and inquiry booking workflows with React.js and Vite.\n• Live at: https://maldivesexperts.co.za/\n\n4. **Aadhaar Voting System** (Blockchain Voting Application):\n• Implemented Aadhaar-linked OTP verification, eligibility checks, candidate management, and one-vote-per-user validation on a blockchain ledger.`;
+    return `Sushant has built and contributed to 4 key engineering projects:\n\n1. **Maldives Experts** (Full-Stack Travel Booking Platform):\n• Implemented booking management REST API endpoints and backend service logic with financial validations.\n• Developed React-based booking and invoice management components.\n• Optimized CI/CD artifact transfers and code-splitting.\n• Live at: https://maldivesexperts.co.za/\n\n2. **Koniwala Matrimonials CRM** (Enterprise Operations Platform):\n• Built 8 dashboard sections and 3 specialized modules (AI matchmaking, WhatsApp profile capture, employee attendance) using NestJS, React, PostgreSQL, Prisma ORM, and Redis.\n\n3. **Aadhaar Voting System** (Blockchain Voting Application):\n• Implemented Aadhaar-linked OTP verification, eligibility checks, candidate management, and one-vote-per-user validation on a blockchain ledger.\n\n4. **Visiblo AI** (AI-Powered Local SEO SaaS Platform):\n• Contributed to local SEO management, review monitoring, and business automation.\n• Developed reusable UI dashboards and integrated REST APIs.\n• Live at: https://www.visibloai.com/`;
   }
 
   // 4. Skills / Tech Stack
@@ -112,7 +112,7 @@ export const answerCareerQuery = async (query: string): Promise<string> => {
   }
 
   // Default intelligent fallback response
-  return `Hi! I'm Sushant's Career Assistant. Sushant is a **MERN Full Stack Developer** with **3+ years of professional experience** currently engineering production software at **Solverix Technologies Pvt. Ltd.** in Mumbai.\n\nYou can ask me about his:\n• Current work on the Factory Dispatch Automation System at Solverix\n• Past contributions at Oxstren (6+ projects, 40+ APIs) & Innovins (30% load reduction)\n• Featured projects (Visiblo AI, Koniwala CRM, Aadhaar Voting)\n• Technical skill set (React, Node, Express, NestJS, PostgreSQL, Prisma, Docker)\n• Or how to contact him for new opportunities!`;
+  return `Hi! I'm Sushant's Career Assistant. Sushant is a **MERN Full Stack Developer** with **3+ years of professional experience** currently engineering production software at **Solverix Technologies Pvt. Ltd.** in Mumbai.\n\nYou can ask me about his:\n• Current work on the Factory Dispatch Automation System at Solverix\n• Past contributions at Videowaves (Internal CRM & PostgreSQL APIs) & Innovins (30% load reduction)\n• Featured projects (Maldives Experts, Koniwala CRM, Aadhaar Voting, Visiblo AI)\n• Technical skill set (React, Node, Express, NestJS, PostgreSQL, Prisma, Docker)\n• Or how to contact him for new opportunities!`;
 };
 
 // Export backward-compatible function name
